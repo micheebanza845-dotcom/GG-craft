@@ -415,15 +415,57 @@
     .quick-view { min-width: 50px; padding-inline: 0; }
     .empty-state { grid-column: 1 / -1; padding: 45px; border: 1px dashed var(--line); border-radius: var(--radius); text-align: center; background: rgba(255,255,255,.72); color: var(--muted); }
 
-    .story-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 34px; align-items: stretch; }
-    .story-image, .story-copy {
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .story-image { min-height: 590px; background: var(--sand); }
-    .story-image img { width: 100%; height: 100%; object-fit: cover; }
+    .story-stack {
+  display: grid;
+  gap: 28px;
+}
+
+.story-copy {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.mini-gallery {
+  width: 100%;
+  overflow: hidden;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: var(--shadow-soft);
+}
+
+.mini-gallery-track {
+  width: max-content;
+  display: flex;
+  gap: 12px;
+  animation: miniGalleryScroll 32s linear infinite;
+  will-change: transform;
+}
+
+.mini-gallery img {
+  width: clamp(145px, 22vw, 220px);
+  height: clamp(105px, 15vw, 150px);
+  flex: 0 0 auto;
+  object-fit: cover;
+  border-radius: 17px;
+}
+
+.mini-gallery:hover .mini-gallery-track {
+  animation-play-state: paused;
+}
+
+@keyframes miniGalleryScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 6px));
+  }
+}
     .story-copy { padding: clamp(28px,5vw,62px); background: rgba(255,255,255,.88); }
     .story-copy h2 { margin: 15px 0 20px; font-family: "Playfair Display", Georgia, serif; font-size: clamp(2.3rem,4.7vw,4.4rem); line-height: .98; letter-spacing: -.04em; }
     .story-copy > p { color: var(--muted); }
@@ -820,20 +862,93 @@
     </section>
 
     <section class="section" id="univers">
-      <div class="container story-grid">
-        <div class="story-image reveal"><img src="images/IMG-20260702-WA0009.jpg" alt="Sandales artisanales richement décorées de perles"></div>
-        <div class="story-copy reveal">
-          <span class="eyebrow dark">Notre identité</span>
-          <h2>Des détails qui racontent une histoire.</h2>
-          <p>GG-Craft valorise les pièces faites main, l’élégance féminine et les inspirations africaines. Les créations sont pensées pour une sortie, un cadeau, une cérémonie ou simplement pour porter quelque chose de différent.</p>
-          <p>Chaque modèle associe une base confortable, une composition équilibrée et une finition décorative travaillée avec soin.</p>
-          <div class="signature">
-            <div><strong>Fait main</strong><span>Une finition artisanale authentique</span></div>
-            <div><strong>Sur mesure</strong><span>Couleurs et détails selon vos envies</span></div>
-            <div><strong>Proximité</strong><span>Échanges directs avant validation</span></div>
-          </div>
+  <div class="container story-stack">
+
+    <div class="mini-gallery reveal" aria-label="Galerie des créations GG-Craft">
+      <div class="mini-gallery-track">
+
+        <!-- Première série de photos -->
+        <img src="images/IMG-20260702-WA0001.jpg"
+             alt="Sandales artisanales GG-Craft"
+             loading="lazy">
+
+        <img src="images/IMG-20260702-WA0003.jpg"
+             alt="Sandales perlées colorées"
+             loading="lazy">
+
+        <img src="images/IMG-20260702-WA0006.jpg"
+             alt="Sandales rouges artisanales"
+             loading="lazy">
+
+        <img src="images/IMG-20260702-WA0009.jpg"
+             alt="Sandales ornées de motifs circulaires"
+             loading="lazy">
+
+        <img src="images/IMG-20260702-WA0010.jpg"
+             alt="Sandales noires et blanches perlées"
+             loading="lazy">
+
+        <img src="images/IMG-20260702-WA0016.jpg"
+             alt="Sandales turquoise graphiques"
+             loading="lazy">
+
+        <img src="images/IMG-20260702-WA0019.jpg"
+             alt="Pochette artisanale GG-Craft"
+             loading="lazy">
+
+        <img src="images/IMG-20260702-WA0021.jpg"
+             alt="Accessoire artisanal GG-Craft"
+             loading="lazy">
+
+        <!-- Deuxième série identique pour assurer un défilement continu -->
+        <img src="images/IMG-20260702-WA0001.jpg" alt="" aria-hidden="true">
+        <img src="images/IMG-20260702-WA0003.jpg" alt="" aria-hidden="true">
+        <img src="images/IMG-20260702-WA0006.jpg" alt="" aria-hidden="true">
+        <img src="images/IMG-20260702-WA0009.jpg" alt="" aria-hidden="true">
+        <img src="images/IMG-20260702-WA0010.jpg" alt="" aria-hidden="true">
+        <img src="images/IMG-20260702-WA0016.jpg" alt="" aria-hidden="true">
+        <img src="images/IMG-20260702-WA0019.jpg" alt="" aria-hidden="true">
+        <img src="images/IMG-20260702-WA0021.jpg" alt="" aria-hidden="true">
+
+      </div>
+    </div>
+
+    <div class="story-copy reveal">
+      <span class="eyebrow dark">Notre identité</span>
+
+      <h2>Des détails qui racontent une histoire.</h2>
+
+      <p>
+        GG-Craft valorise les pièces faites main, l’élégance féminine
+        et les inspirations africaines. Les créations sont pensées pour
+        une sortie, un cadeau, une cérémonie ou simplement pour porter
+        quelque chose de différent.
+      </p>
+
+      <p>
+        Chaque modèle associe une base confortable, une composition
+        équilibrée et une finition décorative travaillée avec soin.
+      </p>
+
+      <div class="signature">
+        <div>
+          <strong>Fait main</strong>
+          <span>Une finition artisanale authentique</span>
+        </div>
+
+        <div>
+          <strong>Sur mesure</strong>
+          <span>Couleurs et détails selon vos envies</span>
+        </div>
+
+        <div>
+          <strong>Proximité</strong>
+          <span>Échanges directs avant validation</span>
         </div>
       </div>
+    </div>
+
+  </div>
     </section>
 
     <section class="section alt" id="commander">
